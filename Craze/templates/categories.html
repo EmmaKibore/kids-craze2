@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+
+
+{% block content %}
+    {{block.super}}
+<div style = "background-color: blanchedalmond;" class="container-fluid">   
+<div style="text-align:center; padding-top: 130px; padding-bottom: 130px; " class="container-fluid" id="moda">
+
+        <div class="content text-center">
+                <h1 style="font-size: 90px; font-family: 'Black And White Picture', sans-serif;"> Various Categories</h1>
+              </div>
+              <h6 style="text-align:center; color:rgb(253, 253, 253);">{{date|date:"l d  F  Y"}}</h6>
+
+   
+    
+</div>
+<div class="container">
+    <hr>  <a href=""><button style = "color: black; font-size: 20px" class="btn btn-outline-light btn-sm">Add Category</button></a>  <hr>
+    <div class="row">
+    
+        {% for category in categories %}
+        
+            <div class="col-md-4 col-lg-4 col-sm-6 ">
+                <div class="card">
+                    <div style="text-align:center; color:antiquewhite; background-color:rgb(10, 10, 10);" class="card-header">
+                        <h5>{{ category.image_category}}</h5>
+                    </div>
+                    <div style="text-align:center; background-color:rgb(10, 10, 10);" class="card-image">
+                        
+                           {% if images %}
+                           {% for image in images %}
+                           {% if image.category == category %}
+
+                           <img class="img-responsive" src="{{image.image_path.url}}" alt="" height="200px" width="300px">
+
+                           {% endif %}
+                           {% endfor %}
+                           {% endif %}
+
+                        
+                    </div>
+                    <div style="background-color:rgb(10, 10, 10);" class="card-footer"> 
+                        <a href="/category/{{ category.id}}"> <button class="btn btn-outline-primary btn-sm">View &#8594;</button> </a>
+                    </div>
+                </div>
+                <br>
+            <br>
+            </div>
+            
+        {% endfor%}
+    
+</div>
+</div>
+{% endblock %}
