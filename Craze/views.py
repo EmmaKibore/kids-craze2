@@ -18,13 +18,13 @@ def profile(request):
     return render(request, 'profile.html', {"profile":profile}) 
 
 def search_results(request):
-    if 'business' in request.GET and request.GET["business"]:
-        search_term = request.GET.get("business")
-        searched_businesses = Business.objects.filter(name=search_term)
+    if 'term' in request.GET and request.GET["term"]:
+        search_term = request.GET.get("term")
+        searched_term = term.objects.filter(name=search_term)
         message = f"{search_term}"
         profiles=  Profile.objects.all( )
       
-        return render(request, 'search.html',{"message":message,"business": searched_businesses,'profiles':profiles})
+        return render(request, 'search.html',{"message":message,"term": searched_term,'profiles':profiles})
 
     else:
         message = "You haven't searched for any term"
@@ -33,9 +33,10 @@ def search_results(request):
 def categories(request):
     categories = Category.objects.all()
     images = Image.objects.all()
-    shoes=Image.objects.filter(category__image_category='shoes').first()
-    clothes=Image.objects.filter(category__image_category='clothes').first()
-    jewelery=Image.objects.filter(category__image_category='jewelry').first()
+    shoes = Image.objects.filter(category__image_category='shoes').first()
+    clothes = Image.objects.filter(category__image_category='clothes').first()
+    jewelery = Image.objects.filter(category__image_category='jewelry').first()
+
     return render(request,'categories.html',{"categories":categories, "images":images,"shoes":shoes,"clothes":clothes,"jewelery":jewelery}) 
 
 def category(request,id):
