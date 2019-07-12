@@ -12,7 +12,7 @@ def home(request):
     return render(request, 'home.html')
 
 def profile(request):
-    current_user = request.User
+    current_user = request.user
     profile = Profile.objects.all()
 
     return render(request, 'profile.html', {"profile":profile}) 
