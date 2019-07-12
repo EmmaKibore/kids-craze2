@@ -43,7 +43,7 @@ class Image(models.Model):
     
     image_path = models.ImageField(upload_to='images/')
     image_name = models.CharField(max_length=30, blank=False)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
    
     def __str__(self):
        return self.image_name

@@ -31,13 +31,13 @@ def search_results(request):
         return render(request, 'search.html',{"message":message})
 
 def categories(request):
-    categories = Category.objects.all()
-    images = Image.objects.all()
-    shoes = Image.objects.filter(category__image_category='shoes').first()
-    clothes = Image.objects.filter(category__image_category='clothes').first()
-    jewelery = Image.objects.filter(category__image_category='jewelry').first()
+    categories = Category.objects.filter()
+    images = Image.objects.all()[:5]
+    shoes = Image.objects.filter(category__image_category='shoes')[:1]
+    cloths = Image.objects.filter(category__image_category='cloths').first()
+    accessories = Image.objects.filter(category__image_category='accessories').first()
 
-    return render(request,'categories.html',{"categories":categories, "images":images,"shoes":shoes,"clothes":clothes,"jewelery":jewelery}) 
+    return render(request,'categories.html',{"categories":categories, "images":images,"shoes":shoes,"cloths":cloths,"accessories":accessories}) 
 
 def category(request,id):
     categories = Category.objects.all()
